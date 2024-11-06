@@ -1,8 +1,8 @@
-package firecore
+package console_reader
 
 import (
 	"fmt"
-	"github.com/golang/protobuf/proto"
+	firecore "github.com/streamingfast/firehose-core"
 	"io"
 	"strconv"
 	"strings"
@@ -26,62 +26,6 @@ const InitLogPrefixLen = len(InitLogPrefix)
 const BlockLogPrefix = "BLOCK "
 const BlockLogPrefixLen = len(BlockLogPrefix)
 
-// Requried by NewConsoleReader but never used
-type BlockEncoder interface {
-	Encode(block Block) (blk *pbbstream.Block, err error)
-}
-
-// Block represents the chain-specific Protobuf block. Chain specific's block
-// model must implement this interface so that Firehose core is able to properly
-// marshal/unmarshal your block into/to the Firehose block envelope binary format.
-//
-// All the methods are prefixed with `GetFirehoseBlock` to avoid any potential
-// conflicts with the fields/getters of your chain's block model that would
-// prevent you from implementing this interface.
-//
-// Consumer of your chain's protobuf block model don't need to be aware of those
-// details, they are internal Firehose core information that are required to function
-// properly.
-//
-// The value you return for each of those methods must be done respecting Firehose rules
-// which are enumarated in the documentation of each method.
-type Block interface {
-	proto.Message
-
-	// GetFirehoseBlockID returns the block ID as a string, usually in the representation
-	// used by your chain (hex, base58, base64, etc.). The block ID must be unique across
-	// all blocks that will ever exist on your chain.
-	GetFirehoseBlockID() string
-
-	// GetFirehoseBlockNumber returns the block number as an unsigned integer. The block
-	// number could be shared by multiple blocks in which case one is the canonical one
-	// and the others are forks (resolution of forks is handled by Firehose core later in the
-	// block processing pipeline).
-	//
-	// The value should be sequentially ordered which means that a block with block number 10
-	// has come before block 11. Firehose core will deal with block skips without problem though
-	// (e.g. block 1, is produced then block 3 where block 3's parent is block 1).
-	GetFirehoseBlockNumber() uint64
-
-	// GetFirehoseBlockParentID returns the block ID of the parent block as a string. All blocks
-	// ever produced must have a parent block ID except for the genesis block which is the first
-	// one. The value must be the same as the one returned by GetFirehoseBlockID() of the parent.
-	//
-	// If it's the genesis block, return an empty string.
-	GetFirehoseBlockParentID() string
-
-	// GetFirehoseBlockParentNumber returns the block number of the parent block as a uint64.
-	// The value must be the same as the one returned by GetFirehoseBlockNumber() of the parent
-	// or `0` if the block has no parent
-	//
-	// This is useful on chains that have holes. On other chains, this is as simple as "BlockNumber - 1".
-	GetFirehoseBlockParentNumber() uint64
-
-	// GetFirehoseBlockTime returns the block timestamp as a time.Time of when the block was
-	// produced. This should the consensus agreed time of the block.
-	GetFirehoseBlockTime() time.Time
-}
-
 type ParsingStats struct {
 }
 
@@ -104,7 +48,7 @@ type ConsoleReader struct {
 	blockRate *dmetrics.AvgRatePromCounter
 }
 
-func NewConsoleReader(lines chan string, blockEncoder BlockEncoder, logger *zap.Logger, tracer logging.Tracer) (mindreader.ConsolerReader, error) {
+func NewConsoleReader(lines chan string, blockEncoder firecore.BlockEncoder, logger *zap.Logger, tracer logging.Tracer) (mindreader.ConsolerReader, error) {
 	reader := newConsoleReader(lines, logger, tracer)
 
 	delayBetweenStats := 30 * time.Second
