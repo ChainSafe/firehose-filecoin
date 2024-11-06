@@ -1,5 +1,5 @@
 global:
-  owner: streamingfast
+  owner: chainsafe
   project: firehose-acme
   binary: fireacme
   language: golang

@@ -1,4 +1,4 @@
-module github.com/streamingfast/firehose-acme
+module github.com/chainsafe/firehose-filecoin
 
 go 1.22
 

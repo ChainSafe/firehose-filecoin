@@ -1,7 +1,7 @@
 package main
 
 import (
-	pbacme "github.com/streamingfast/firehose-acme/pb/sf/acme/type/v1"
+	pbacme "github.com/chainsafe/firehose-filecoin/pb/sf/acme/type/v1"
 	firecore "github.com/streamingfast/firehose-core"
 	fhCmd "github.com/streamingfast/firehose-core/cmd"
 )
@@ -11,7 +11,7 @@ func main() {
 		ShortName:            "acme",
 		LongName:             "Acme",
 		ExecutableName:       "dummy-blockchain",
-		FullyQualifiedModule: "github.com/streamingfast/firehose-acme",
+		FullyQualifiedModule: "github.com/chainsafe/firehose-filecoin",
 		Version:              version,
 
 		FirstStreamableBlock: 1,
