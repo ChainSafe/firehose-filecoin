@@ -1,7 +1,7 @@
 global:
   owner: chainsafe
   project: firehose-acme
-  binary: fireacme
+  binary: firefil
   language: golang
   variant: application
   sfreleaser-min-version: v0.7.0
