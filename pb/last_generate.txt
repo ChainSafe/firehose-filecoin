@@ -1,2 +1,2 @@
-generate.sh - Wed Nov  6 15:20:13 +07 2024 - rumcajs
-streamingfast/firehose-filecoin/proto revision: edddbaf
+generate.sh - Wed Nov  6 15:46:22 +07 2024 - rumcajs
+streamingfast/firehose-filecoin/proto revision: 3910e98

@@ -6,36 +6,36 @@ import (
 	firecore "github.com/streamingfast/firehose-core"
 )
 
-var _ firecore.Block = (*Block)(nil)
+var _ firecore.Block = (*Tipset)(nil)
 
-func (b *Block) GetFirehoseBlockID() string {
-	return b.Header.Hash
+func (b *Tipset) GetFirehoseBlockID() string {
+	return b.TipsetKey
 }
 
-func (b *Block) GetFirehoseBlockNumber() uint64 {
-	return b.Header.Height
+func (b *Tipset) GetFirehoseBlockNumber() uint64 {
+	return b.Height
 }
 
-func (b *Block) GetFirehoseBlockParentID() string {
-	if b.Header.PreviousHash == nil {
+func (b *Tipset) GetFirehoseBlockParentID() string {
+	if b.ParentTipsetKey == nil {
 		return ""
 	}
 
-	return *b.Header.PreviousHash
+	return *b.ParentTipsetKey
 }
 
-func (b *Block) GetFirehoseBlockParentNumber() uint64 {
-	if b.Header.PreviousNum == nil {
+func (b *Tipset) GetFirehoseBlockParentNumber() uint64 {
+	if b.Height == 0 {
 		return 0
 	}
 
-	return *b.Header.PreviousNum
+  return b.Height - 1
 }
 
-func (b *Block) GetFirehoseBlockTime() time.Time {
-	return time.Unix(0, int64(b.Header.Timestamp)).UTC()
+func (b *Tipset) GetFirehoseBlockTime() time.Time {
+	return time.Unix(0, int64(b.Timestamp)).UTC()
 }
 
-func (b *Block) GetFirehoseBlockLIBNum() uint64 {
-	return b.Header.FinalNum
+func (b *Tipset) GetFirehoseBlockLIBNum() uint64 {
+	return 1;
 }
