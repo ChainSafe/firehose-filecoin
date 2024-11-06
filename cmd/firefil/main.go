@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/chainsafe/firehose-filecoin/console_reader"
 	pbfilecoin "github.com/chainsafe/firehose-filecoin/pb/sf/filecoin/type/v1"
 	firecore "github.com/streamingfast/firehose-core"
 	fhCmd "github.com/streamingfast/firehose-core/cmd"
@@ -17,7 +18,7 @@ func main() {
 		FirstStreamableBlock: 1,
 
 		BlockFactory:         func() firecore.Block { return new(pbfilecoin.Tipset) },
-		ConsoleReaderFactory: firecore.NewConsoleReader,
+		ConsoleReaderFactory: console_reader.NewConsoleReader,
 
 		Tools: &firecore.ToolsConfig[*pbfilecoin.Tipset]{},
 	})
