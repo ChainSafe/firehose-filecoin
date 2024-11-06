@@ -2,6 +2,7 @@ package console_reader
 
 import (
 	"fmt"
+	"github.com/ipfs/go-cid"
 	firecore "github.com/streamingfast/firehose-core"
 	"io"
 	"strconv"
@@ -221,24 +222,30 @@ func (r *ConsoleReader) readBlock(line string) (out *pbbstream.Block, err error)
 
 	height, err := strconv.ParseUint(chunks[0], 10, 64)
 	if err != nil {
-		return nil, fmt.Errorf("parsing block num %q: %w", chunks[0], err)
+		return nil, fmt.Errorf("parsing height %q: %w", chunks[0], err)
 	}
 
 	blockCount, err := strconv.ParseUint(chunks[1], 10, 64)
 	if err != nil {
-		return nil, fmt.Errorf("parsing block num %q: %w", chunks[0], err)
+		return nil, fmt.Errorf("parsing block count %q: %w", chunks[1], err)
 	}
 
 	timestampUnixNano, err := strconv.ParseUint(chunks[2], 10, 64)
 	if err != nil {
-		return nil, fmt.Errorf("parsing timestamp %q: %w", chunks[5], err)
+		return nil, fmt.Errorf("parsing timestamp %q: %w", chunks[2], err)
 	}
 
 	timestamp := time.Unix(0, int64(timestampUnixNano))
 
-	tipsetKey := chunks[3]
+	tipsetCID, err := cid.Decode(chunks[3])
+	if err != nil {
+		return nil, fmt.Errorf("parsing tipset CID %q: %w", chunks[3], err)
+	}
 
-	parentTipsetKey := chunks[4]
+	parentTipsetCID, err := cid.Decode(chunks[4])
+	if err != nil {
+		return nil, fmt.Errorf("parsing parent tipset CID %q: %w", chunks[4], err)
+	}
 
 	parentNum := height - 1
 
@@ -250,9 +257,9 @@ func (r *ConsoleReader) readBlock(line string) (out *pbbstream.Block, err error)
 	}
 
 	block := &pbbstream.Block{
-		Id:        tipsetKey,
+		Id:        tipsetCID.String(),
 		Number:    height,
-		ParentId:  parentTipsetKey,
+		ParentId:  parentTipsetCID.String(),
 		ParentNum: parentNum,
 		Timestamp: timestamppb.New(timestamp),
 		LibNum:    1,
@@ -260,8 +267,8 @@ func (r *ConsoleReader) readBlock(line string) (out *pbbstream.Block, err error)
 	}
 
 	ConsoleReaderBlockReadCount.Inc()
-	r.lastBlock = bstream.NewBlockRef(tipsetKey, height)
-	r.lastParentBlock = bstream.NewBlockRef(parentTipsetKey, parentNum)
+	r.lastBlock = bstream.NewBlockRef(tipsetCID.String(), height)
+	r.lastParentBlock = bstream.NewBlockRef(parentTipsetCID.String(), parentNum)
 	r.lastBlockTimestamp = timestamp
 	r.lib = libNum
 

@@ -1,4 +1,4 @@
-package firecore
+package console_reader
 
 import "github.com/streamingfast/dmetrics"
 
