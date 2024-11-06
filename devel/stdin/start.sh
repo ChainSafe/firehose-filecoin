@@ -34,7 +34,7 @@ main() {
   # fi
 
   # exec go run github.com/streamingfast/dummy-blockchain@v1.2.0 start --tracer=firehose --block-rate=60 --store-dir "$chain_data" | $fireacme -c $(basename $ROOT).yaml start "$@"
-  forest --chain calibnet --encrypt-keystore=false | $fireacme -c $(basename $ROOT).yaml start "$@"
+  forest --chain calibnet --encrypt-keystore=false | $firefil -c $(basename $ROOT).yaml start "$@"
 }
 
 usage_error() {
