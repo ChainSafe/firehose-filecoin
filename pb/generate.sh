@@ -24,10 +24,10 @@ function main() {
   set -e
   cd "$ROOT/pb" &> /dev/null
 
-  generate "sf/acme/type/v1/type.proto"
+  generate "sf/filecoin/type/v1/type.proto"
 
   echo "generate.sh - `date` - `whoami`" > ./last_generate.txt
-  echo "streamingfast/firehose-acme/proto revision: `GIT_DIR=$ROOT/.git git log -n 1 --pretty=format:%h -- proto`" >> ./last_generate.txt
+  echo "streamingfast/firehose-filecoin/proto revision: `GIT_DIR=$ROOT/.git git log -n 1 --pretty=format:%h -- proto`" >> ./last_generate.txt
 }
 
 # usage:

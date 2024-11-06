@@ -1,6 +1,6 @@
 specVersion: v0.1.0
 package:
-  name: acme
+  name: filecoin
   version: v1.0.0
   url: https://github.com/chainsafe/firehose-filecoin
   doc: |
@@ -10,6 +10,6 @@ package:
 
 protobuf:
   files:
-    - sf/acme/type/v1/type.proto
+    - sf/filecoin/type/v1/type.proto
   importPaths:
     - ./proto

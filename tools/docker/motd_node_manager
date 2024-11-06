@@ -6,7 +6,7 @@
 Welcome to this Firehose chain reader pod, common commands:
  - Show version                       firefil --version
 
-Node manager commands (acme-... <tab> to show all):
+Node manager commands (filecoin-... <tab> to show all):
  - Check if running                   reader-is-running
 
  - Start or restart instance          reader-resume

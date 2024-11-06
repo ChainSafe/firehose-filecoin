@@ -1,14 +1,14 @@
 package main
 
 import (
-	pbacme "github.com/chainsafe/firehose-filecoin/pb/sf/acme/type/v1"
+	pbfilecoin "github.com/chainsafe/firehose-filecoin/pb/sf/filecoin/type/v1"
 	firecore "github.com/streamingfast/firehose-core"
 	fhCmd "github.com/streamingfast/firehose-core/cmd"
 )
 
 func main() {
-	fhCmd.Main(&firecore.Chain[*pbacme.Block]{
-		ShortName:            "acme",
+	fhCmd.Main(&firecore.Chain[*pbfilecoin.Block]{
+		ShortName:            "filecoin",
 		LongName:             "Filecoin",
 		ExecutableName:       "dummy-blockchain",
 		FullyQualifiedModule: "github.com/chainsafe/firehose-filecoin",
@@ -16,10 +16,10 @@ func main() {
 
 		FirstStreamableBlock: 1,
 
-		BlockFactory:         func() firecore.Block { return new(pbacme.Block) },
+		BlockFactory:         func() firecore.Block { return new(pbfilecoin.Block) },
 		ConsoleReaderFactory: firecore.NewConsoleReader,
 
-		Tools: &firecore.ToolsConfig[*pbacme.Block]{},
+		Tools: &firecore.ToolsConfig[*pbfilecoin.Block]{},
 	})
 }
 
