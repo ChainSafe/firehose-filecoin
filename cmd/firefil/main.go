@@ -7,19 +7,19 @@ import (
 )
 
 func main() {
-	fhCmd.Main(&firecore.Chain[*pbfilecoin.Block]{
+	fhCmd.Main(&firecore.Chain[*pbfilecoin.Tipset]{
 		ShortName:            "filecoin",
 		LongName:             "Filecoin",
-		ExecutableName:       "dummy-blockchain",
-		FullyQualifiedModule: "github.com/chainsafe/firehose-filecoin",
+		ExecutableName:       "forest",
+    FullyQualifiedModule: "github.com/chainsafe/firehose-filecoin",
 		Version:              version,
 
 		FirstStreamableBlock: 1,
 
-		BlockFactory:         func() firecore.Block { return new(pbfilecoin.Block) },
+		BlockFactory:         func() firecore.Block { return new(pbfilecoin.Tipset) },
 		ConsoleReaderFactory: firecore.NewConsoleReader,
 
-		Tools: &firecore.ToolsConfig[*pbfilecoin.Block]{},
+		Tools: &firecore.ToolsConfig[*pbfilecoin.Tipset]{},
 	})
 }
 
