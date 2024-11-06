@@ -1,2 +1,2 @@
-generate.sh - Mon Jan  8 23:53:31 EST 2024 - maoueh
-streamingfast/firehose-filecoin/proto revision: 1e24bd4
+generate.sh - Wed Nov  6 00:50:26 EST 2024 - d
+streamingfast/firehose-filecoin/proto revision: ada6ee7
