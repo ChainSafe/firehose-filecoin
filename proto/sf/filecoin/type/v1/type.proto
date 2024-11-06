@@ -9,5 +9,5 @@ message Tipset {
   uint64 block_count = 2;
   uint64 timestamp = 3;
   string tipset_key = 4;
-  string parent_tipset_key = 5;
+  optional string parent_tipset_key = 5;
 }
