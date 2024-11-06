@@ -1,6 +1,6 @@
 # Invoked using:
 #
-#   dummy-blockchain start --tracer=firehose --store-dir=./devel/stdin/firehose-data/reader-node --block-rate=60 | ./devel/stdin/start.sh
+#   forest --chain calibnet --encrypt-keystore=false | ./devel/stdin/start.sh
 #
 # The `./devel/stdin/start.sh` does the above invocation and pipes the output to the `stdin` process.
 start:
