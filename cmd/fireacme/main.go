@@ -9,7 +9,7 @@ import (
 func main() {
 	fhCmd.Main(&firecore.Chain[*pbacme.Block]{
 		ShortName:            "acme",
-		LongName:             "Acme",
+		LongName:             "Filecoin",
 		ExecutableName:       "dummy-blockchain",
 		FullyQualifiedModule: "github.com/chainsafe/firehose-filecoin",
 		Version:              version,

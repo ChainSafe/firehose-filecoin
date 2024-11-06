@@ -4,7 +4,7 @@ package:
   version: v1.0.0
   url: https://github.com/chainsafe/firehose-filecoin
   doc: |
-    Protobuf definitions for developing Substreams Acme modules.
+    Protobuf definitions for developing Substreams Filecoin modules.
 
     This package does not include any modules.
 

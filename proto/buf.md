@@ -1,8 +1,8 @@
-### StreamingFast Firehose Acme Types
+### StreamingFast Firehose Filecoin Types
 
-Protobuf definitions when dealing with Firehose Acme chain(s) like Acme Mainnet and Acme Testnet.
+Protobuf definitions when dealing with Firehose Filecoin chain(s) like Filecoin Mainnet and Filecoin Testnet.
 
-Foremost, this provides [sf.acme.types.v1.Block](https://buf.build/chainsafe/firehose-filecoin/docs/main:sf.acme.type.v1#sf.acme.type.v1.Block) which is used for consuming Firehose & Substreams Acme block model.
+Foremost, this provides [sf.acme.types.v1.Block](https://buf.build/chainsafe/firehose-filecoin/docs/main:sf.acme.type.v1#sf.acme.type.v1.Block) which is used for consuming Firehose & Substreams Filecoin block model.
 
 This is probably the only model you should really care about, the rest are meant for internal communications for Firehose operators.
 
