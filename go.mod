@@ -5,6 +5,7 @@ go 1.22
 toolchain go1.22.0
 
 require (
+	github.com/golang/protobuf v1.5.4
 	github.com/streamingfast/firehose-core v1.3.6
 	google.golang.org/protobuf v1.33.0
 )
@@ -70,7 +71,6 @@ require (
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
-	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/gnostic v0.5.7-v3refs // indirect
 	github.com/google/gofuzz v1.1.0 // indirect
 	github.com/google/s2a-go v0.1.7 // indirect
@@ -133,7 +133,7 @@ require (
 	github.com/prometheus/client_model v0.5.0 // indirect
 	github.com/prometheus/common v0.44.0 // indirect
 	github.com/prometheus/procfs v0.11.0 // indirect
-	github.com/rs/cors v1.10.0 // indirect
+	github.com/rs/cors v1.11.0 // indirect
 	github.com/schollz/closestmatch v2.1.0+incompatible // indirect
 	github.com/sercand/kuberesolver/v5 v5.1.1 // indirect
 	github.com/sethvargo/go-retry v0.2.3 // indirect
